@@ -21,7 +21,7 @@ jobs:
         with:
           java-version: '19'
           distribution: 'temurin'
-      - name: update version
+      - name: Update version
         run: |
           mvn -q versions:set -DnewVersion="${{ needs.release.outputs.version }}"
           echo "$(cat pom.xml)"
