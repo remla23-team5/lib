@@ -26,6 +26,6 @@ jobs:
           mvn -q versions:set -DnewVersion="${{ needs.release.outputs.version }}"
           echo "$(cat pom.xml)"
       - name: Publish package
-        run: mvn --batch-mode -Drevision=${{ github.event.release.tag_name }} deploy
+        run: mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
