@@ -8,8 +8,9 @@ on:
 
 jobs:
   release:
-    uses: remla23-team5/cicd/.github/workflows/release.yaml@test
+    uses: remla23-team5/cicd/.github/workflows/release.yaml@main
   publish:
+    name: Publish to Github package registry
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -25,7 +26,7 @@ jobs:
       - name: Update version
         run: |
           mvn -q versions:set -DnewVersion="${{ needs.release.outputs.version }}"
-          echo "$(cat pom.xml)"
+
       - name: Publish package
         run: mvn --batch-mode deploy
         env:
