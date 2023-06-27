@@ -1,17 +1,11 @@
 name: Java CI
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 19
-        uses: actions/setup-java@v3
-        with:
-          java-version: '19'
-          distribution: 'temurin'
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
+  app-ci:
+    name: java-ci
+    uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@update-release-snapshot
